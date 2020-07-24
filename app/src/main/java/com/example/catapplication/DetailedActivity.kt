@@ -30,6 +30,7 @@ class DetailedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed)
         val url = intent.getStringExtra(url)
+        // Library EasyFlipView is used for this imageView
         val imageView = findViewById<ImageView>(R.id.full_image)
         imageView.load(url) {
             crossfade(true)
@@ -46,8 +47,8 @@ class DetailedActivity : AppCompatActivity() {
         }
     }
 
+    // This method requests permission and save the picture in the Gallery
     private fun savePicture(url: String) {
-
         if (PermissionChecker.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PermissionChecker.PERMISSION_GRANTED
         ) { ActivityCompat.requestPermissions(
@@ -62,9 +63,7 @@ class DetailedActivity : AppCompatActivity() {
                     + Integer.toString(time.monthDay) + Integer.toString(time.hour)
                     + Integer.toString(time.minute) + Integer.toString(time.second) + ".jpg"
             )
-
             val fOut = FileOutputStream(storage)
-
             val request = GetRequest.Builder(this).data(url).build()
             val imageLoader = Coil.imageLoader(this)
             MainScope().launch {

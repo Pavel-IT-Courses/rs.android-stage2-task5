@@ -2,7 +2,6 @@ package com.example.catapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             itemAdapter.addItems(it)
         })
     }
+    // The method adds more pictures
     fun uploadMore() {
         catViewModel.upload()
     }

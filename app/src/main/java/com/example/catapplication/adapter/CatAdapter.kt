@@ -30,6 +30,7 @@ class CatAdapter(private val activity: AppCompatActivity) : RecyclerView.Adapter
         holder.bind(imageUrl, activity)
     }
 
+    // This method calls a new portion of pictures upload when the list is approaching the last item
     override fun onViewAttachedToWindow(holder: CatViewHolder) {
         super.onViewAttachedToWindow(holder)
         val layoutPosition = holder.layoutPosition
