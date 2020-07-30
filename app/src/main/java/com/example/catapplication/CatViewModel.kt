@@ -18,7 +18,7 @@ class CatViewModel : ViewModel() {
         }
     }
 
-    fun upload() {
+    fun load() {
         viewModelScope.launch {
             _items.value = CatApiImpl.getListOfCats()
         }
