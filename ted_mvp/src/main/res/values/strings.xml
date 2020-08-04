@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TED_MVP</string>
+    <string name="dark">dark</string>
+    <string name="use_dark_theme">Switch Off / On Dark Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="rss">rss</string>
+    <string name="use_rss">Select JSON (by default) or XML Feed</string>
+    <string name="rss_mode">JSON/XML Feed</string>
+    <string name="theme">Theme</string>
+    <string name="source">Source</string>
+    <string name="settings">Settings</string>
+</resources>

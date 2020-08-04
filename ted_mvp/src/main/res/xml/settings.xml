@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreferenceCompat
+        android:key="@string/dark"
+        android:summary="@string/use_dark_theme"
+        android:title="@string/dark_theme"/>
+    <SwitchPreferenceCompat
+        android:key="@string/rss"
+        android:summary="@string/use_rss"
+        android:title="@string/rss_mode"/>
+
+</PreferenceScreen>

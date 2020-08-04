@@ -1,2 +1,4 @@
+include ':ted_mvp'
+include ':ted'
 include ':app'
 rootProject.name = "My Application"
