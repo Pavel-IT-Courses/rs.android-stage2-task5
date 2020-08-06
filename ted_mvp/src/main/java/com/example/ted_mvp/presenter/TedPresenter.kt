@@ -1,6 +1,5 @@
 package com.example.ted_mvp.presenter
 
-import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.example.ted_mvp.R
 import com.example.ted_mvp.model.TedJsonApiImpl
@@ -17,7 +16,7 @@ class TedPresenter(private var tedView: TedView?) {
     suspend fun populateList() {
         val context = tedView?.getContext()
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        var list: List<TedVideoEntry>
+        val list: List<TedVideoEntry>
         if (!sharedPreferences.getBoolean(context?.resources?.getString(R.string.rss), false)) {
             list = TedJsonApiImpl.getListOfPresentations()
         } else {

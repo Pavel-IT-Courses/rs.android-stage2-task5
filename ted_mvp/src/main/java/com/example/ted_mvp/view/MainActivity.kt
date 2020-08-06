@@ -2,11 +2,8 @@ package com.example.ted_mvp.view
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ted_mvp.R
@@ -67,8 +64,8 @@ class MainActivity : AppCompatActivity(), TedView {
     override fun getContext(): Context = applicationContext
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
-//        if (p1.equals(applicationContext.resources?.getString(R.string.rss))) {
-//            CoroutineScope(Dispatchers.Main).launch { tedPresenter.populateList() }
-//        }
+        if (p1.equals(applicationContext.resources?.getString(R.string.rss))) {
+            CoroutineScope(Dispatchers.Main).launch { tedPresenter.populateList() }
+        }
     }
 }
