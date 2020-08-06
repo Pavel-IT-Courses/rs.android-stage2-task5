@@ -1,7 +1,9 @@
 package com.example.ted_mvp.model
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -24,7 +26,7 @@ object TedJsonApiImpl {
     suspend fun getListOfPresentations(): List<TedVideoEntry> {
         return withContext(Dispatchers.IO) {
             presentationService.getListOfPresentations()
-                .channel
+            .channel
                 .itms
                 .map { tedEntry ->
                     TedVideoEntry(
@@ -34,5 +36,6 @@ object TedJsonApiImpl {
                     )
                 }
         }
+
     }
 }

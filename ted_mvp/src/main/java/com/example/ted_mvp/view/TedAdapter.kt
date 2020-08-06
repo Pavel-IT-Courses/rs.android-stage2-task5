@@ -26,8 +26,8 @@ class TedAdapter : RecyclerView.Adapter<TedViewHolder>() {
         val titleText = items[position].title ?: ""
         val durationText = items[position].duration ?: ""
         holder.bind(imageUrl, titleText, durationText)
-    }
 
+    }
 }
 
 class TedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,7 +35,6 @@ class TedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val authorView = view.findViewById<TextView>(R.id.authorView)
     private val titleView = view.findViewById<TextView>(R.id.titleView)
     private val durationView = view.findViewById<TextView>(R.id.durationView)
-
     fun bind(imageUrl: String, titleText: String, durationText: String) {
         imageView.load(imageUrl)
         val author = titleText.split("|")[1].trim()
@@ -44,4 +43,6 @@ class TedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         titleView.text = title
         durationView.text = durationText
     }
+
 }
+

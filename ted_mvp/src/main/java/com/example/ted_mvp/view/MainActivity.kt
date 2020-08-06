@@ -1,8 +1,13 @@
 package com.example.ted_mvp.view
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ted_mvp.R
 import com.example.ted_mvp.presenter.TedPresenter
@@ -19,6 +24,9 @@ class MainActivity : AppCompatActivity(), TedView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+        tedPresenter.updateTheme()
         setContentView(R.layout.activity_main)
         supportFragmentManager
             .beginTransaction()
@@ -30,13 +38,16 @@ class MainActivity : AppCompatActivity(), TedView {
 
         recyclerView.apply {
             adapter = itemAdapter
-            layoutManager = GridLayoutManager(this@MainActivity, this.resources.configuration.orientation)
+            layoutManager =
+                GridLayoutManager(this@MainActivity, this.resources.configuration.orientation)
         }
-        CoroutineScope(Dispatchers.Main).launch {tedPresenter.populateList()}
+        CoroutineScope(Dispatchers.Main).launch { tedPresenter.populateList() }
     }
 
     override fun onDestroy() {
         tedPresenter.destroy()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
         super.onDestroy()
     }
 
@@ -46,8 +57,18 @@ class MainActivity : AppCompatActivity(), TedView {
     }
 
     override fun setDarkTheme(dark: Boolean) {
-        TODO("Not yet implemented")
+        if (dark) {
+            setTheme(R.style.AppTheme_AppBarOverlay)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 
     override fun getContext(): Context = applicationContext
+
+    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
+//        if (p1.equals(applicationContext.resources?.getString(R.string.rss))) {
+//            CoroutineScope(Dispatchers.Main).launch { tedPresenter.populateList() }
+//        }
+    }
 }

@@ -6,25 +6,31 @@ import org.simpleframework.xml.ElementList
 import org.simpleframework.xml.Root
 
 @Root(name = "rss", strict = false)
-data class ApiRssData (
+data class ApiRssData @JvmOverloads constructor(
     @field:Element(name = "channel")
-    val channel: TedRssItem
+    var channel: TedRssChannel? = null
 )
 
 @Root(name = "channel", strict = false)
-data class TedRssItem(
-    @field:ElementList(name = "item", inline = true, required = false)
-    val itms: List<TedRssEntry>
+data class TedRssChannel @JvmOverloads constructor(
+    @field:ElementList(entry = "item", inline = true, required = false)
+    var list: List<TedRssItem>? = null
 
 )
 
 @Root(name = "item", strict = false)
-data class TedRssEntry(
-    @field:Element(name = "title")
-    val tedTitle: String,
-    @field:Element(name = "image") @field:Attribute(name = "url")
-    val tedImage: String,
+data class TedRssItem @JvmOverloads constructor(
+    @field:Element(name = "title") @param:Element(name = "title")
+    var tedTitle: String = "",
+    @field:Element(name = "image")
+    var tedImage: TedRssUrl? = null,
     @field:Element(name = "duration")
-    val tedDuration: String
+    var tedDuration: String = ""
+)
+
+@Root(name = "image", strict = false)
+data class TedRssUrl @JvmOverloads constructor(
+    @field:Attribute(name = "url")
+    var url: String = ""
 )
 

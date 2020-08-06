@@ -21,9 +21,19 @@ class TedPresenter(private var tedView: TedView?) {
         if (!sharedPreferences.getBoolean(context?.resources?.getString(R.string.rss), false)) {
             list = TedJsonApiImpl.getListOfPresentations()
         } else {
-            list = TedRssApiImpl.getListOfPresentations()
+            list = TedRssApiImpl.getListOfPresentations()!!
         }
         tedView?.setList(list)
+    }
+
+    fun updateTheme() {
+        val context = tedView?.getContext()
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        if (sharedPreferences.getBoolean(context?.resources?.getString(R.string.dark), false)) {
+            tedView?.setDarkTheme(true)
+        } else {
+            tedView?.setDarkTheme(false)
+        }
     }
 
 }

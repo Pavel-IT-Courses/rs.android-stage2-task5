@@ -22,7 +22,7 @@
             android:layout_alignEnd="@id/imageView"
             android:layout_alignBottom="@id/imageView"
             android:layout_margin="8dp"
-            android:background="@color/colorWhite" />
+            android:background="@color/colorGray" />
     </RelativeLayout>
 
     <LinearLayout
