@@ -68,8 +68,8 @@ class DetailedActivity : AppCompatActivity() {
                 val sec = date.get(Calendar.SECOND)
                 val storage = File(
                     cacheDir,
-                    Integer.toString(year) + Integer.toString(day) + Integer.toString(hour)
-                        + Integer.toString(min) + Integer.toString(sec) + ".jpg"
+                    year.toString() + day.toString() + hour.toString()
+                        + min.toString() + sec.toString() + ".jpg"
                 )
                 val fOut = FileOutputStream(storage)
                 val request = GetRequest.Builder(this).data(url).build()

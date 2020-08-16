@@ -1,3 +1,4 @@
+include ':finalproject'
 include ':ted_mvp'
 include ':ted'
 include ':app'
